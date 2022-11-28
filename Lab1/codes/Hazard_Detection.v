@@ -13,8 +13,4 @@ module Hazard_Detection(
 assign PCWrite_o = !(ID_EX_MemRead_i && ((ID_EX_rd_i == rs1_i) || (ID_EX_rd_i == rs2_i)));
 assign Stall_o   = ID_EX_MemRead_i && ((ID_EX_rd_i == rs1_i) || (ID_EX_rd_i == rs2_i));
 assign NoOp_o    = ID_EX_MemRead_i && ((ID_EX_rd_i == rs1_i) || (ID_EX_rd_i == rs2_i));
-// always @(*) begin
-//     $display("MEMREAD : %b\nrs1 : %H\nrs2 : %h", ID_EX_MemRead_i, rs1_i, rs2_i);
-//     $display("NoOp : %b", NoOp_o);
-// end
 endmodule

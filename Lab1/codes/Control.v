@@ -19,14 +19,8 @@ reg MemWrite_o;
 reg Branch_o;
 
 always @(*) begin
-    // R-type
-    // $display("branch: %b", Branch_o);
-    // $display("NoOp: %b", NoOp_i);
-    // $display("Op: %b", Op_i);
-
     if (!NoOp_i) begin
         if (Op_i == 7'b0110011) begin
-            // $display("R-type");
             // R-type instruction
             ALUOp_o = 2'b10; // ALUop of a R-type: 10
             ALUSrc_o = 1'b0;
@@ -37,9 +31,7 @@ always @(*) begin
             Branch_o = 1'b0;
 
         end
-        // I-type
         else if (Op_i == 7'b0010011 ) begin
-            // $display("I-type");
             // I-type instruction
             ALUOp_o = 2'b11; // ALUop of a immediate: 11
             ALUSrc_o = 1'b1;
@@ -49,9 +41,7 @@ always @(*) begin
             MemWrite_o = 1'b0;
             Branch_o = 1'b0;
         end
-
         else if (Op_i == 7'b0000011) begin
-            // $display("load");
             // load instruction
             // ALU: add
             ALUOp_o = 2'b11;
@@ -64,7 +54,6 @@ always @(*) begin
         end
         // s-type
         else if (Op_i == 7'b0100011) begin
-            // $display("store");
             // store instruction
             // ALU: add
             ALUOp_o = 2'b11;
@@ -75,12 +64,10 @@ always @(*) begin
             MemWrite_o = 1'b1;
             Branch_o = 1'b0;
         end
-
         //SB-type
         else if (Op_i == 7'b1100011) begin
-            // $display("beq");
             // beq instruction
-            ALUOp_o = 2'b11; // ALUop of a immediate: 11
+            ALUOp_o = 2'b11;
             ALUSrc_o = 1'b0;
             RegWrite_o = 1'b0;
             MemtoReg_o = 1'b0;
@@ -89,9 +76,8 @@ always @(*) begin
             Branch_o = 1'b1;
         end
         else begin
-            // $display("beq");
-            // beq instruction
-            ALUOp_o = 2'b00; // ALUop of a immediate: 11
+            // default
+            ALUOp_o = 2'b00;
             ALUSrc_o = 1'b0;
             RegWrite_o = 1'b0;
             MemtoReg_o = 1'b0;
@@ -109,6 +95,5 @@ always @(*) begin
         MemWrite_o = 1'b0;
         Branch_o = 1'b0;
     end
-    // $display("%b %b %b %b %b %b %b", ALUOp_o, ALUSrc_o, RegWrite_o, MemtoReg_o,  MemRead_o, MemWrite_o, Branch_o);
 end
 endmodule
