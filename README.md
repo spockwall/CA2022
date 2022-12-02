@@ -2,6 +2,6 @@
 computer architecture homework
 
 - unfinished part
-  - test beq is correct 
+  - test beq whether it is correct 
   - use signed wire for srai
   - warning ALU control
