@@ -10,7 +10,7 @@ always @(*)
 begin
     case (ALUOp_i)
         2'b00 : ALUCtrl = 3'b010;
-        2'b01 : ALUCtrl = 3'b101;
+        2'b01 : ALUCtrl = 3'b101; //sub and give zero
         2'b10 :
             case(funct_i)
                 10'b0000000111 : ALUCtrl = 3'b000; // and

@@ -116,10 +116,10 @@ assign rs1 = IF_ID_inst[19:15];
 assign rs2 = IF_ID_inst[24:20];
 
 // lab2 branch preditor
-wire [31:0] pc_res;
+wire [31:0] pc_restore;
 
 assign IF_ID_EX_Flush = (ID_EX_update && (ID_EX_prev_predict != zero));
-assign pc_res = (ID_EX_prev_predict==1 && zero==0) ? ID_EX_pc_next : ID_EX_Branch_address;
+assign pc_restore = (ID_EX_prev_predict==1 && zero==0) ? ID_EX_pc_next : ID_EX_Branch_address;
 
 Control Control(
     .Op_i       (op),
@@ -190,7 +190,7 @@ MUX32 MUX32A (
 // lab2
 MUX32 MUX32B (
     .data1_i   (MUX_PC_out),
-    .data2_i   (pc_res),
+    .data2_i   (pc_restore),
     .select_i  (IF_ID_EX_Flush),
     .data_o    (MUX_PC_out2)
 );
